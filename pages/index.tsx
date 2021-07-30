@@ -1,9 +1,9 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useCallback } from 'react';
 
 import { SearchResults } from '../components/SearchResults';
 
 interface Product {
-  id: string;
+  id: number;
   price: number;
   title: string;
 }
@@ -25,6 +25,10 @@ export default function Home() {
 
     setResults(data);
   }
+
+  const addToWishlist = useCallback((id: number) => {
+    console.log(id);
+  }, []);
 
   return (
     <div>
@@ -50,7 +54,7 @@ export default function Home() {
           <button type="submit">Buscar</button>
         </form>
 
-        <SearchResults results={results} />
+        <SearchResults results={results} onAddToWishlist={addToWishlist} />
       </div>
     </div>
   );
